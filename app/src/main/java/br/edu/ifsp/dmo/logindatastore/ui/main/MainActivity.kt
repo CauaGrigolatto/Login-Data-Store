@@ -6,13 +6,14 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import br.edu.ifsp.dmo.logindatastore.R
 import br.edu.ifsp.dmo.logindatastore.databinding.ActivityMainBinding
 import br.edu.ifsp.dmo.logindatastore.ui.home.HomeActivity
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var viewModel: MainViewModel
+
+    private var isNavigationAllowed: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -83,9 +84,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun navigateToHomeActivity() {
-        val mIntent = Intent(this, HomeActivity::class.java)
-        startActivity(mIntent)
-        finish()
+        if (! isNavigationAllowed) {
+            isNavigationAllowed = true
+            val mIntent = Intent(this, HomeActivity::class.java)
+            startActivity(mIntent)
+            finish()
+        }
     }
 
     private fun shortToast(message: String) {
