@@ -38,6 +38,12 @@ class DataStoreRepository(context: Context) {
         }
     }
 
+    suspend fun logout() {
+        dataStore.edit { preferences ->
+            preferences[PreferencesKeys.FLG_STAY_CONNECTED] = false
+        }
+    }
+
     val loginPreferences: Flow<Pair<Boolean, Boolean>> = dataStore.data.map { preferences ->
         val flgSaveLogin = preferences[PreferencesKeys.FLG_SAVE_LOGIN] ?: false
         val flgStayConnected = preferences[PreferencesKeys.FLG_STAY_CONNECTED] ?: false
