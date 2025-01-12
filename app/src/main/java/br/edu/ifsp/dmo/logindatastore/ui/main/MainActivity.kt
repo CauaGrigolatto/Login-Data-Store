@@ -50,9 +50,8 @@ class MainActivity : AppCompatActivity() {
         viewModel.storedData.observe(this, Observer {
             val (login, password) = it
 
-            binding.textInputLogin.setText(login)
-
             if (login.isNotBlank()) {
+                binding.textInputLogin.setText(login)
                 binding.textInputPassword.setText(password)
             }
         })

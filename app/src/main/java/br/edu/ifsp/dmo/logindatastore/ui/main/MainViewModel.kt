@@ -26,10 +26,12 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         flgStayConnected: Boolean): Boolean {
 
         if (User.autenticate(login, password)) {
-            if (flgSaveLogin || flgStayConnected) {
+            if (flgSaveLogin) {
                 savePreferences(login, password, flgSaveLogin, flgStayConnected)
             }
-
+            else {
+                savePreferences("", "", false, flgStayConnected)
+            }
             return true
         }
 
