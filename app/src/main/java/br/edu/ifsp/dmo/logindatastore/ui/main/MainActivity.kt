@@ -2,6 +2,7 @@ package br.edu.ifsp.dmo.logindatastore.ui.main
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -14,6 +15,10 @@ class MainActivity : AppCompatActivity() {
     private lateinit var viewModel: MainViewModel
 
     private var isNavigationAllowed: Boolean = false
+
+    companion object {
+        private const val TAG = "ACTIVITY_TRACKER"
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -83,6 +88,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun navigateToHomeActivity() {
+        Log.i(MainActivity.TAG, "Navigating to home activity.")
+
         if (! isNavigationAllowed) {
             isNavigationAllowed = true
             val mIntent = Intent(this, HomeActivity::class.java)
