@@ -17,7 +17,7 @@ class HomeActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
-        binding.textViewMessage.text = "Bem-vindo!"
+        binding.textViewMessage.text = "Bem-vindo à home screen!"
 
         setupListeners()
     }
